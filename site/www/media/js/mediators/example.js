@@ -1,0 +1,1 @@
+define(["jquery"],function(e){var t={init:function(){}};e(function(){t.init()})});

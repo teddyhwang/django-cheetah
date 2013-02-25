@@ -1,0 +1,4 @@
+django
+django-pipeline
+https://github.com/mtigas/django-medusa/tarball/master#egg=django-medusa
+https://github.com/etianen/django-require/tarball/master#egg=django-require

@@ -1,0 +1,1 @@
+({appDir:"../",baseUrl:"../",dir:"../../../www/media/js/",optimize:"uglify",optimizeCss:"none",mainConfigFile:"../config/main.js",fileExclusionRegExp:/^(node_modules|.svn)/,modules:[{name:"global"}]});

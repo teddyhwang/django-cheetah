@@ -1,0 +1,46 @@
+{% load i18n %}
+{% load compressed %}
+{% load url from future %}
+{% load require %}
+
+<!DOCTYPE html>
+<html lang="{{ LANGUAGE_CODE|slice:"2" }}">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+
+        <title>{% block page_title %}Joe Fresh{% endblock %}</title>
+
+        <meta name="description" content="{% block meta_description %}{% endblock %}">
+        <meta name="keywords" content="{% block meta_keywords %}{% endblock %}">
+
+        {% compressed_css 'core-styles' %}
+
+        {% if debug %}
+            <script src="{{ STATIC_URL }}lib/modernizr/modernizr.js"></script>
+        {% else %}
+            <script src="{{ STATIC_URL }}compiled/js/modernizr.min.js"></script>
+        {% endif %}
+
+        {% block requirejs %}{% endblock %}
+    </head>
+
+    <body class="lang-{{ LANGUAGE_CODE }} {% block body_class %}{% endblock %}">
+    {% block body %}
+        {% block navigation %}
+        <nav>
+            <ul>
+                <li><a href="{% url 'home' %}">Home</a></li>
+                <li><a href="{% url 'collections' %}">Collections</a></li>
+                <li><a href="{% url 'category' %}">Category</a></li>
+                <li><a href="{% url 'products' %}">Products</a></li>
+                <li><a href="{% url 'product-detail' %}">Product Detail</a></li>
+                <li><a href="{% url 'shopping-bag' %}">Shopping Bag</a></li>
+            </ul>
+        </nav>
+        {% endblock %}
+
+        {% block content %}{% endblock %}
+    {% endblock body %}
+    </body>
+</html>

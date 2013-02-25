@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+
+{% load repeat %}
+
+{% block body_class %}products-page{% endblock %}
+
+{% block content %}
+
+    <h1>Product List View</h1>
+
+    {% num_range 5 as products %}
+
+    <ul>
+        {% for i in products %}
+            <li>{{ i }} {% include 'product/modules/product.html' %}</li>
+        {% endfor %}
+    </ul>
+
+{% endblock %}
