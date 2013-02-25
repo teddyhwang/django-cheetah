@@ -1,1 +1,0 @@
-require.config({baseUrl:"media/js/",waitSeconds:30,shim:{},paths:{jquery:"../lib/jquery/jquery.min",settings:"modules/settings",global:"mediators/global"}}),require(["global"]),require(["mediators/homepage"]);

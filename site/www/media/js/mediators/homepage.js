@@ -1,1 +1,0 @@
-define(["jquery"],function(e){var t={init:function(){alert("homepage mediator")}};e(function(){t.init()})});
