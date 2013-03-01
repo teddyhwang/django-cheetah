@@ -3,9 +3,14 @@ Django Cheetah - Front End Project Driven by Django
 
 ## Introduction
 
-Django Cheetah is a starting template to use for front-end only projects.
-Utilize the powerful template engine Django uses with the comfort of compiling
-assets using django-pipeline and django-require.
+Django Cheetah is a starting template to use for front-end projects. This is
+ideal for any project that requires providing front-end stating HTML templates
+and associated media assets to another team that will integrate with a separate
+back-end.
+
+Consider this as a toolkit to utilize the powerful template engine Django
+provideas as well as having all the asset management taken care of (compiling
+CSS, JS assets and organizing requirejs projects).
 
 ## Quick Install
 
