@@ -7,6 +7,15 @@ Django Cheetah is a starting template to use for front-end only projects.
 Utilize the powerful template engine Django uses with the comfort of compiling
 assets using django-pipeline and django-require.
 
+## Quick Install
+
+    mkdir <project_name>
+    cd <project_name>
+    virtualenv env_<project_name>
+    django-admin.py startproject --template=https://github.com/teddyhwang/django-cheetah/zipball/master <project_name>
+    cd <project_name>
+    pip install -r requirements.txt
+
 ## Beginner's Setup to Django
 
 1. Install [homebrew](http://mxcl.github.com/homebrew/) `ruby -e "$(curl -fsSL
@@ -76,10 +85,16 @@ to continue the example from above.
 
 ## Export static HTML Files and Compile Assets for Prodution
 
-1. From the `site/` folder, run `make`
+**WARNING** this is a very poor method of building the project as it uses `sed`
+to turn `DEBUG` to `False` and then back to `True` once the build finishes. The
+plan is to create a django management command that can automate all of this.
+
+1. Edit `Makefile` and replace `{{ project_name }}` with the same name used
+above when installing the project.
+1. Type `make` from terminal to build the files.
 1. All HTML views will be exported into `site/www`
-1. All compiled assets will be found in `site/www/media` - the assets for
-production use can be found in `site/www/media/compiled/`
+1. All compiled assets will be found in `site/www/static` - the assets for
+production use can be found in `site/www/static/compiled/`
 
 ## Tips, Tricks and Known Issues
 
