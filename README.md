@@ -25,6 +25,9 @@ This template comes with the following front-end tools out of the box and ready 
 - requirejs and almondjs for optimization
 - underscorejs
 - modernizr
+- django-pipeline
+- django-require
+- django-medusa
 
 ## Requirements
 
