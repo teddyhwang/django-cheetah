@@ -1,6 +1,6 @@
 require.config({
 
-    baseUrl: 'media/js/',
+    baseUrl: 'static/js/',
 
     waitSeconds: 30,
 

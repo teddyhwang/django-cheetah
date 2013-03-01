@@ -7,7 +7,7 @@
 ({
     appDir: '../',
     baseUrl: '../',
-    dir: '../../../www/media/js/',
+    dir: '../../../www/static/js/',
     optimize: 'uglify',
     optimizeCss: 'none', // https://github.com/jrburke/r.js/issues/167
 
