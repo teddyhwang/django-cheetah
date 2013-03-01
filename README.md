@@ -120,8 +120,6 @@ installing dependencies in your local environment
 
 ## Tips, Tricks and Known Issues
 
-- Add `${debian_chroot:+($debian_chroot)}` as the prefix in your `PS1` in
-`~/.bashrc`. This will reveal which environment you are active on
 - `deactivate` to leave your virtualenv environment
 - `make` will only work on Mac OSX because of the use of `sed` which is
   different between Debian and Ubuntu
