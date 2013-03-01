@@ -4,6 +4,7 @@ from django.conf.urls import patterns, include, url
 # from django.contrib import admin
 # admin.autodiscover()
 
-urlpatterns = patterns('',
-    (r'', include('staticpages.urls')),
+urlpatterns = patterns('{{ project_name }}.views',
+    url(r'^$', 'home', name='home'),
+    url(r'about.html', 'about', name='about'),
 )

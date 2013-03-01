@@ -60,21 +60,21 @@ MEDIA_ROOT = os.path.join(PROJECT_PATH, 'media')
 # URL that handles the media served from MEDIA_ROOT. Make sure to use a
 # trailing slash.
 # Examples: "http://media.lawrence.com/media/", "http://example.com/media/"
-MEDIA_URL = '/ugc-media/'
+MEDIA_URL = '/media/'
 
 # Absolute path to the directory static files should be collected to.
 # Don't put anything in this directory yourself; store your static files
 # in apps' "static/" subdirectories and in STATICFILES_DIRS.
 # Example: "/home/media/media.lawrence.com/static/"
-STATIC_ROOT = os.path.join(PROJECT_PATH, '..', 'www', 'media')
+STATIC_ROOT = os.path.join(PROJECT_PATH, 'www', 'static')
 
 # URL prefix for static files.
 # Example: "http://media.lawrence.com/static/"
-STATIC_URL = '/media/'
+STATIC_URL = '/static/'
 
 # Additional locations of static files
 STATICFILES_DIRS = (
-    os.path.join(PROJECT_PATH, '..', 'media'),
+    os.path.join(PROJECT_PATH, 'static'),
     # Put strings here, like "/home/html/static" or "C:/www/django/static".
     # Always use forward slashes, even on Windows.
     # Don't forget to use absolute paths, not relative paths.
@@ -89,7 +89,7 @@ STATICFILES_FINDERS = (
 )
 
 # Make this unique, and don't share it with anybody.
-SECRET_KEY = 'l+gd#))e1_ckdy(nhy3*m6xfqsx0yq+0=+ht(ungc01zxod5(t'
+SECRET_KEY = '{{ secret_key }}'
 
 # List of callables that know how to import templates from various sources.
 TEMPLATE_LOADERS = (
@@ -108,13 +108,13 @@ MIDDLEWARE_CLASSES = (
     # 'django.middleware.clickjacking.XFrameOptionsMiddleware',
 )
 
-ROOT_URLCONF = 'ecommerce.urls'
+ROOT_URLCONF = '{{ project_name }}.urls'
 
 # Python dotted path to the WSGI application used by Django's runserver.
 WSGI_APPLICATION = 'ecommerce.wsgi.application'
 
 TEMPLATE_DIRS = (
-    os.path.join(PROJECT_PATH, '..', 'templates'),
+    os.path.join(PROJECT_PATH, 'templates'),
     # Put strings here, like "/home/html/django_templates" or "C:/www/django/templates".
     # Always use forward slashes, even on Windows.
     # Don't forget to use absolute paths, not relative paths.
@@ -131,57 +131,15 @@ INSTALLED_APPS = (
     # 'django.contrib.admin',
     # Uncomment the next line to enable admin documentation:
     # 'django.contrib.admindocs',
+
+    # external
     'django_medusa',
     'pipeline',
     'require',
-    'staticpages',
-    'ecommerce',
+
+    # project
+    '{{ project_name }}',
 )
-
-from ecommerce.settings_pipeline import *
-
-PIPELINE_COMPILERS = (
-    'pipeline.compilers.less.LessCompiler',
-)
-
-# Combine require storage and pipeline storage
-STATICFILES_STORAGE = 'staticpages.storage.RequirePipelineStorage'
-# STATICFILES_STORAGE = 'pipeline.storage.PipelineStorage'
-# STATICFILES_STORAGE = 'require.storage.OptimizedStaticFilesStorage'
-
-PIPELINE_CSS_COMPRESSOR = 'pipeline.compressors.yui.YUICompressor'
-
-# The baseUrl to pass to the r.js optimizer.
-REQUIRE_BASE_URL = 'js'
-
-# The name of a build profile to use for your project, relative to REQUIRE_BASE_URL.
-# A sensible value would be 'app.build.js'. Leave blank to use the built-in default build profile.
-REQUIRE_BUILD_PROFILE = 'build/build.js'
-
-# The name of the require.js script used by your project, relative to REQUIRE_BASE_URL.
-REQUIRE_JS = '../lib/requirejs/require.js'
-
-# A dictionary of standalone modules to build with almond.js.
-# See the section on Standalone Modules, below.
-REQUIRE_STANDALONE_MODULES = {
-    'config/homepage': {
-        'out': '../compiled/js/homepage.min.js',
-        'build_profile': 'build/homepage.js',
-    },
-}
-
-# Whether to run django-require in debug mode.
-REQUIRE_DEBUG = DEBUG
-
-# A tuple of files to exclude from the compilation result of r.js.
-REQUIRE_EXCLUDE = ("build.txt",)
-
-# The execution environment in which to run r.js: node or rhino.
-REQUIRE_ENVIRONMENT = "node"
-
-MEDUSA_RENDERER_CLASS = "django_medusa.renderers.DiskStaticSiteRenderer"
-
-MEDUSA_DEPLOY_DIR = os.path.join(PROJECT_PATH, '..', 'www')
 
 # A sample logging configuration. The only tangible logging
 # performed by this configuration is to send an email to
@@ -211,3 +169,48 @@ LOGGING = {
         },
     }
 }
+
+from ecommerce.settings_pipeline import *
+
+PIPELINE_COMPILERS = (
+    'pipeline.compilers.less.LessCompiler',
+)
+
+# Combine require storage and pipeline storage
+STATICFILES_STORAGE = '{{ project_name }}.storage.RequirePipelineStorage'
+# STATICFILES_STORAGE = 'pipeline.storage.PipelineStorage'
+# STATICFILES_STORAGE = 'require.storage.OptimizedStaticFilesStorage'
+
+PIPELINE_CSS_COMPRESSOR = 'pipeline.compressors.yui.YUICompressor'
+
+# The baseUrl to pass to the r.js optimizer.
+REQUIRE_BASE_URL = 'js'
+
+# The name of a build profile to use for your project, relative to REQUIRE_BASE_URL.
+# A sensible value would be 'app.build.js'. Leave blank to use the built-in default build profile.
+REQUIRE_BUILD_PROFILE = 'build/build.js'
+
+# The name of the require.js script used by your project, relative to REQUIRE_BASE_URL.
+REQUIRE_JS = '../lib/requirejs/require.js'
+
+# A dictionary of standalone modules to build with almond.js.
+# See the section on Standalone Modules, below.
+REQUIRE_STANDALONE_MODULES = {
+    'config/homepage': {
+        'out': '../compiled/js/homepage.min.js',
+        'build_profile': 'build/homepage.js',
+    },
+}
+
+# Whether to run django-require in debug mode.
+REQUIRE_DEBUG = DEBUG
+
+# A tuple of files to exclude from the compilation result of r.js.
+REQUIRE_EXCLUDE = ('build.txt',)
+
+# The execution environment in which to run r.js: node or rhino.
+REQUIRE_ENVIRONMENT = 'node'
+
+MEDUSA_RENDERER_CLASS = 'django_medusa.renderers.DiskStaticSiteRenderer'
+
+MEDUSA_DEPLOY_DIR = os.path.join(PROJECT_PATH, 'www')
