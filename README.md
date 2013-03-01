@@ -17,6 +17,7 @@ CSS, JS assets and organizing requirejs optimization builds).
     mkdir <project_name>
     cd <project_name>
     virtualenv env_<project_name>
+    source env_<project_name>/bin/active
     django-admin.py startproject --template=https://github.com/teddyhwang/django-cheetah/zipball/master <project_name>
     cd <project_name>
     pip install -r requirements.txt
@@ -116,10 +117,10 @@ the recently installed version of Python is used
 1. Install less compiler `sudo npm install -g lessc`
 1. Install YUI Compressor `brew install yuicompressor`
 1. Install uglify `sudo npm install -g uglifyjs`
-1. Create your virtual environment for this project`virtualenv env_{{
-project_name }}` this is a local virtual environment and should not be committed
+1. Create your virtual environment for this project`virtualenv
+env_<project_name>` this is a local virtual environment and should not be committed
 into the svn repository (proset svn:ignore has already been made to the folder)
-1. `source env_{{ project_name }}/bin/activate` - This is a very important step and
+1. `source env_<project_name>/bin/activate` - This is a very important step and
 should be done before starting the server at all times
 1. `pip install -r requirements.txt` - do not use `sudo` here as you are
 installing dependencies in your local environment
