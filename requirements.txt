@@ -1,4 +1,4 @@
 django
 django-pipeline
-django-medusa
-django-require
+https://github.com/etianen/django-require/tarball/master#egg=django-require
+https://github.com/mtigas/django-medusa/tarball/master#egg=django-medusa
