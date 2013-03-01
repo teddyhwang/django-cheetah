@@ -22,7 +22,8 @@ This template comes with the following front-end tools out of the box and ready 
 
 - LESS
 - jQuery
-- requirejs
+- requirejs and almondjs for optimization
+- underscorejs
 - modernizr
 
 ## Requirements
@@ -43,7 +44,7 @@ All templates can be found in `<project_name>/templates/`
 1. All media assets can be found in `<project_name>/static/`
 1. All `.less` files will be automatically compiled into CSS files on pageload -
 each individual CSS file will be created for the ones listed in:
-`site/ecommerce/settings_pipeline.py`
+`<project_name>/settings_pipeline.py`
 
 ## Adding in a new static HTML page in Django
 
