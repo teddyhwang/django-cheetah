@@ -1,5 +1,3 @@
-# Django settings for ecommerce project.
-
 import os
 
 DEBUG = True
@@ -111,7 +109,7 @@ MIDDLEWARE_CLASSES = (
 ROOT_URLCONF = '{{ project_name }}.urls'
 
 # Python dotted path to the WSGI application used by Django's runserver.
-WSGI_APPLICATION = 'ecommerce.wsgi.application'
+WSGI_APPLICATION = '{{ project_name }}.wsgi.application'
 
 TEMPLATE_DIRS = (
     os.path.join(PROJECT_PATH, 'templates'),
@@ -170,7 +168,7 @@ LOGGING = {
     }
 }
 
-from ecommerce.settings_pipeline import *
+from {{ project_name }}.settings_pipeline import *
 
 PIPELINE_COMPILERS = (
     'pipeline.compilers.less.LessCompiler',
