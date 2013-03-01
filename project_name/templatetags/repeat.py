@@ -9,7 +9,7 @@ class RangeNode(Node):
         context[self.context_name] = range(int(self.num))
         return ""
 
-@register.tag
+@register.simple_tag
 def num_range(parser, token):
     """
     Takes a number and iterates and returns a range (list) that can be 
