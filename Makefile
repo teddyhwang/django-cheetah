@@ -24,20 +24,20 @@ build:
 	@echo "${HR}\n"
 	@rm -rf ${OUTPUT}*
 	@echo "\n Cleaning out build folder...                    ${CHECK} Done"
-	@sed -i '' "s/DEBUG\ =\ True/DEBUG\ =\ False/" ecommerce/settings.py
+	@sed -i '' "s/DEBUG\ =\ True/DEBUG\ =\ False/" ${PROJECTNAME}/settings.py
 	@echo "\n Setting DEBUG to False in Django...             ${CHECK} Done \n"
 	@python manage.py staticsitegen
 	@echo "\n Exporting static HTML files...                  ${CHECK} Done \n"
 	@python manage.py collectstatic --noinput
 	@echo "\n Compiling media assets...                       ${CHECK} Done"
-	@uglifyjs ${OUTPUT}media/lib/modernizr/modernizr.js > ${OUTPUT}media/compiled/js/modernizr.min.js
+	@uglifyjs ${OUTPUT}static/lib/modernizr/modernizr.js > ${OUTPUT}static/compiled/js/modernizr.min.js
 	@echo "\n Compiling modernizr...                          ${CHECK} Done"
 	@rm -rf ${OUTPUT}media/css/*.less
 	@echo "\n Removing all LESS files from build...           ${CHECK} Done"
 	@sed -i '' "s/\=\"\//\=\"/g" ${OUTPUT}*.html
 	@sed -i '' "s/href\=\"\"/href\=\"index\.html\"/g" ${OUTPUT}*.html
 	@echo "\n Creating relative links in HTML build...        ${CHECK} Done"
-	@sed -i '' "s/DEBUG\ =\ False/DEBUG\ =\ True/" ecommerce/settings.py
+	@sed -i '' "s/DEBUG\ =\ False/DEBUG\ =\ True/" ${PROJECTNAME}/settings.py
 	@echo "\n Setting DEBUG back to True in Django...         ${CHECK} Done \n"
 	@echo "\n${HR}"
 	@echo "${PROJECTNAME} built and compiled successfully at ${DATE}."
