@@ -18,7 +18,7 @@ assets using django-pipeline and django-require.
 
 ## Out of the Box
 
-This template comes with the following front-end tools out of the box and ready to use:
+This template comes with the following tools out of the box and ready to use:
 
 - LESS
 - jQuery
@@ -77,7 +77,7 @@ to continue the example from above.
 have its own minified JS asset. This is most likely not the ideal and will be
 refactored heavily in the near future.
 
-1. From the `site` folder, run `make addmediator page=YOUR_PAGE_NAME` e.g.
+1. From the `<project_name>` folder, run `make addmediator page=YOUR_PAGE_NAME` e.g.
 `make addmediator page=homepage`
 1. This will add in the build and config files for the new page
 1. Add in the page mediator reference into `REQUIRE_STANDALONE_MODULES` in
@@ -92,9 +92,9 @@ plan is to create a django management command that can automate all of this.
 1. Edit `Makefile` and replace `{{ project_name }}` with the same name used
 above when installing the project.
 1. Type `make` from terminal to build the files.
-1. All HTML views will be exported into `site/www`
-1. All compiled assets will be found in `site/www/static` - the assets for
-production use can be found in `site/www/static/compiled/`
+1. All HTML views will be exported into `www`
+1. All compiled assets will be found in `www/static` - the assets for
+production use can be found in `www/static/compiled/`
 
 ## Beginner's Setup to Django
 
