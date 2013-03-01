@@ -16,6 +16,82 @@ assets using django-pipeline and django-require.
     cd <project_name>
     pip install -r requirements.txt
 
+## Out of the Box
+
+This template comes with the following front-end tools out of the box and ready to use:
+
+- LESS
+- jQuery
+- requirejs
+- modernizr
+
+## Requirements
+
+See below for beginner's guide on installing the below requirements
+
+- LESS compiler
+- uglifyjs compiler
+- YUI compressor
+
+## Editing HTML Templates
+
+1. Django was chosen because of its excellent [templating system](https://docs.djangoproject.com/en/dev/ref/templates/).
+All templates can be found in `<project_name>/templates/`
+
+## Editing media assets
+
+1. All media assets can be found in `<project_name>/static/`
+1. All `.less` files will be automatically compiled into CSS files on pageload -
+each individual CSS file will be created for the ones listed in:
+`site/ecommerce/settings_pipeline.py`
+
+## Adding in a new static HTML page in Django
+
+1. There are three files that need to be edited when adding a new page from the
+`<project_name>` folder: `views.py`, `urls.py`, `renderers.py`.
+1. Add a new definition in `views.py`. Definitions in python need to be
+separated by an underscore and dashes should not be used. Pass in `request` and
+then the name of the HTML template relative to the `template` folder. For
+example, a new page titled "Contact Us" would like like this:
+
+        def contact_us(request):
+            return render(request, 'contact-us.html')
+
+1. Add a new urlpattern in `urls.py`'. A urlpattern will have `url(r'URL_NAME',
+'VIEW DEFINITION', 'UNIQUE_NAME_FOR_URL')`. Continuing with the "About Us" page,
+the urlpattern would look like this:
+
+        url(r'contact-us.html', 'contact_us', name='contact-us'),
+
+1. Add in the new url into `renderers.py`. This file helps Django export the
+static HTML when the build command is initiated. `/contact-us.html` would be added
+to continue the example from above.
+
+## Add in a new mediator for requirejs
+
+**WARNING** this assumes that the site has multiple pages and every page will
+have its own minified JS asset. This is most likely not the ideal and will be
+refactored heavily in the near future.
+
+1. From the `site` folder, run `make addmediator page=YOUR_PAGE_NAME` e.g.
+`make addmediator page=homepage`
+1. This will add in the build and config files for the new page
+1. Add in the page mediator reference into `REQUIRE_STANDALONE_MODULES` in
+`settings.py`
+
+## Export static HTML Files and Compile Assets for Prodution
+
+**WARNING** this is a very poor method of building the project as it uses `sed`
+to turn `DEBUG` to `False` and then back to `True` once the build finishes. The
+plan is to create a django management command that can automate all of this.
+
+1. Edit `Makefile` and replace `{{ project_name }}` with the same name used
+above when installing the project.
+1. Type `make` from terminal to build the files.
+1. All HTML views will be exported into `site/www`
+1. All compiled assets will be found in `site/www/static` - the assets for
+production use can be found in `site/www/static/compiled/`
+
 ## Beginner's Setup to Django
 
 1. Install [homebrew](http://mxcl.github.com/homebrew/) `ruby -e "$(curl -fsSL
@@ -40,61 +116,6 @@ should be done before starting the server at all times
 installing dependencies in your local environment
 1. `python manage.py runserver 0:8000` - server should be running on
 `http://localhost:8000/`
-
-## Editing HTML Templates
-
-1. Django was chosen because of its excellent [templating system](https://docs.djangoproject.com/en/dev/ref/templates/).
-All templates can be found in `{{ project_name }}/templates/`
-
-## Editing media assets
-
-1. All media assets can be found in `{{ project_name }}/static/`
-1. All `.less` files will be automatically compiled into CSS files on pageload -
-each individual CSS file will be created for the ones listed in:
-`site/ecommerce/settings_pipeline.py`
-
-## Adding in a new HTML page on Django
-
-1. There are three files that need to be edited when adding a new page from the
-`site/staticpages` folder: `views.py`, `urls.py`, `renderers.py`.
-1. Add a new definition in `views.py`. Definitions in python need to be
-separated by an underscore and dashes should not be used. Pass in `request` and
-then the name of the HTML template relative to the `template` folder. For
-example, a new page titled "About Us" would like like this:
-
-        def about_us(request):
-            return render(request, 'about-us.html')
-
-1. Add a new urlpattern in `urls.py`'. A urlpattern will have `url(r'URL_NAME',
-'VIEW DEFINITION', 'UNIQUE_NAME_FOR_URL')`. Continuing with the "About Us" page,
-the urlpattern would look like this:
-
-        url(r'about-us.html', 'about_us', name='about-us'),
-
-1. Add in the new url into `renderers.py`. This file helps Django export the
-static HTML when the build command is initiated. `/about-us.html` would be added
-to continue the example from above.
-
-## Add in a new mediator for requirejs
-
-1. From the `site` folder, run `make addmediator page=YOUR_PAGE_NAME` e.g.
-`make addmediator page=homepage`
-1. This will add in the build and config files for the new page
-1. Add in the page mediator reference into `REQUIRE_STANDALONE_MODULES` in
-`settings.py`
-
-## Export static HTML Files and Compile Assets for Prodution
-
-**WARNING** this is a very poor method of building the project as it uses `sed`
-to turn `DEBUG` to `False` and then back to `True` once the build finishes. The
-plan is to create a django management command that can automate all of this.
-
-1. Edit `Makefile` and replace `{{ project_name }}` with the same name used
-above when installing the project.
-1. Type `make` from terminal to build the files.
-1. All HTML views will be exported into `site/www`
-1. All compiled assets will be found in `site/www/static` - the assets for
-production use can be found in `site/www/static/compiled/`
 
 ## Tips, Tricks and Known Issues
 
