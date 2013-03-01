@@ -1,4 +1,4 @@
-PROJECTNAME = Joe Fresh
+PROJECTNAME = {{ project_name }}
 
 OUTPUT      = www/
 
